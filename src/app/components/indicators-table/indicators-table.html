@@ -1,0 +1,68 @@
+<!-- ===== Filtros ===== -->
+<div class="filters">
+    <p-iconfield>
+        <p-inputicon><i class="pi pi-search"></i></p-inputicon>
+        <input pInputText type="text" placeholder="Buscar indicador..." [value]="service.searchTerm()"
+            (input)="onSearch($event)" />
+    </p-iconfield>
+
+    <p-select [options]="categoryOptions()" [ngModel]="service.selectedCategory()" (onChange)="onCategoryChange($event)"
+        optionLabel="label" optionValue="value" placeholder="Categoría" [showClear]="true" />
+
+    <p-datepicker [ngModel]="service.dateRange()" (ngModelChange)="onRangeChange($event)" selectionMode="range"
+        [readonlyInput]="true" [showIcon]="true" placeholder="Rango de fechas" />
+
+    <p-button label="Limpiar" icon="pi pi-filter-slash" severity="secondary" [text]="true"
+        (onClick)="service.clearFilters()" />
+</div>
+
+<!-- ===== Tabla ===== -->
+<p-table [value]="service.filteredIndicators()" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]"
+    [tableStyle]="{ 'min-width': '60rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="name">Indicador <p-sortIcon field="name" /></th>
+            <th pSortableColumn="category">Categoría <p-sortIcon field="category" /></th>
+            <th pSortableColumn="value">Valor <p-sortIcon field="value" /></th>
+            <th>Progreso</th>
+            <th>Tendencia</th>
+            <th pSortableColumn="date">Fecha <p-sortIcon field="date" /></th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-indicator>
+        <tr>
+            <td>{{ indicator.name }}</td>
+            <td>
+                <p-tag [value]="indicator.category" [severity]="getSeverity(indicator.category)" />
+            </td>
+            <td>{{ indicator.value | number }} {{ indicator.unit }}</td>
+            <td>
+                <p-progressBar [value]="getProgress(indicator)" [showValue]="false"
+                    [style]="{ height: '8px', width: '120px' }" />
+            </td>
+            <td>
+                @switch (indicator.trend) {
+                @case ('up') {
+                <span class="trend up"><i class="pi pi-arrow-trend-up"></i> Subiendo</span>
+                }
+                @case ('down') {
+                <span class="trend down"><i class="pi pi-arrow-trend-down"></i> Bajando</span>
+                }
+                @default {
+                <span class="trend stable"><i class="pi pi-minus"></i> Estable</span>
+                }
+                }
+            </td>
+            <td>{{ indicator.date | date: 'dd/MM/yyyy' }}</td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="6" style="text-align: center; color: #94a3b8;">
+                No se encontraron indicadores con esos filtros.
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

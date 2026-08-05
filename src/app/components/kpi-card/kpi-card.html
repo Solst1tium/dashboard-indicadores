@@ -1,0 +1,13 @@
+<div class="kpi-card">
+    <div class="kpi-icon">
+        <i [class]="kpi().icon"></i>
+    </div>
+    <div class="kpi-info">
+        <span class="kpi-label">{{ kpi().label }}</span>
+        <span class="kpi-value">{{ kpi().value }}</span>
+        <span class="kpi-change" [class.positive]="isPositive()" [class.negative]="!isPositive()">
+            <i [class]="isPositive() ? 'pi pi-arrow-up' : 'pi pi-arrow-down'"></i>
+            {{ kpi().change }}%
+        </span>
+    </div>
+</div>

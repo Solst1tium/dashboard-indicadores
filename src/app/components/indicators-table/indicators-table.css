@@ -1,0 +1,19 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.trend.up     { color: var(--color-success); }
+.trend.down   { color: var(--color-danger); }
+.trend.stable { color: var(--color-warning); }

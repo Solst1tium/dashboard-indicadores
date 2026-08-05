@@ -1,0 +1,25 @@
+<div class="dashboard">
+    <header class="dashboard-header">
+        <div>
+            <h1>Dashboard de Indicadores</h1>
+            <p>Monitoreo de indicadores operacionales y comerciales · Sistema OMS</p>
+        </div>
+        <span class="updated">
+            Última actualización: {{ today | date: 'dd/MM/yyyy HH:mm' }}
+        </span>
+    </header>
+
+    <!-- KPI Cards con @for (track es obligatorio) -->
+    <section class="kpi-grid">
+        @for (kpi of service.kpis(); track kpi.label) {
+        <app-kpi-card [kpi]="kpi" />
+        }
+    </section>
+
+    <app-charts-panel />
+
+    <section class="table-section">
+        <h2>Detalle de indicadores</h2>
+        <app-indicators-table />
+    </section>
+</div>
