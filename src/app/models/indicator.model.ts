@@ -16,4 +16,5 @@ export interface KpiSummary {
   value: string;
   change: number; // porcentaje
   icon: string;   // clase de primeicons
+  
 }
