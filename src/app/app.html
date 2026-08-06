@@ -1,25 +1,18 @@
-<div class="dashboard">
-    <header class="dashboard-header">
-        <div>
-            <h1>Dashboard de Indicadores</h1>
-            <p>Monitoreo de indicadores operacionales y comerciales · Sistema OMS</p>
-        </div>
-        <span class="updated">
-            Última actualización: {{ today | date: 'dd/MM/yyyy HH:mm' }}
-        </span>
-    </header>
+<nav class="topbar">
+  <a routerLink="/dashboard" class="topbar__brand" aria-label="Ir al inicio">
+    <span class="topbar__logo">
+      <span class="topbar__bracket">&lt;</span>SL<span class="topbar__bracket">/&gt;</span>
+    </span>
+  </a>
 
-    <!-- KPI Cards con @for (track es obligatorio) -->
-    <section class="kpi-grid">
-        @for (kpi of service.kpis(); track kpi.label) {
-        <app-kpi-card [kpi]="kpi" />
-        }
-    </section>
+  <div class="topbar__links">
+    <a routerLink="/dashboard" routerLinkActive="topbar__link--active">
+      Dashboard OMS
+    </a>
+    <a routerLink="/economic-indicators" routerLinkActive="topbar__link--active">
+      Indicadores Económicos
+    </a>
+  </div>
+</nav>
 
-    <app-charts-panel />
-
-    <section class="table-section">
-        <h2>Detalle de indicadores</h2>
-        <app-indicators-table />
-    </section>
-</div>
+<router-outlet />

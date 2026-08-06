@@ -1,0 +1,68 @@
+<div class="economic">
+  <div class="back-button-container" style="margin-bottom: 1rem;">
+    <p-button
+      label="Volver al Dashboard"
+      icon="pi pi-arrow-left"
+      [text]="true"
+      (onClick)="goBack()"
+    />
+  </div>
+  <header class="economic-header">
+    <div>
+      <h1>Indicadores Económicos — Chile</h1>
+      <p>Datos reales en vivo desde mindicador.cl</p>
+    </div>
+    <p-button
+      label="Actualizar"
+      icon="pi pi-refresh"
+      [loading]="service.loading()"
+      (onClick)="service.cargarDatos()"
+    />
+  </header>
+
+  <!-- Estado: cargando -->
+  @if (service.loading()) {
+    <div class="loading">
+      <i class="pi pi-spinner pi-spin"></i>
+      Cargando indicadores desde mindicador.cl...
+    </div>
+  }
+
+  <!-- Estado: error -->
+  @if (service.error(); as error) {
+    <div class="error">
+      <i class="pi pi-exclamation-triangle"></i>
+      <span>{{ error }}</span>
+      <p-button label="Reintentar" severity="danger" [text]="true" (onClick)="service.cargarDatos()" />
+    </div>
+  }
+
+  <!-- Estado: éxito -->
+  @if (service.resumen(); as resumen) {
+    <section class="kpi-grid">
+      @for (kpi of kpis(); track kpi.label) {
+        <app-kpi-card [kpi]="kpi" />
+      }
+    </section>
+
+    <div class="charts-grid">
+      <div class="panel">
+        <h3>UF — últimos 30 días</h3>
+        @if (ufChart(); as chart) {
+          <p-chart type="line" [data]="chart" [options]="chartOptions" height="260px" />
+        }
+      </div>
+      <div class="panel">
+        <h3>Dólar — últimos 30 días</h3>
+        @if (dolarChart(); as chart) {
+          <p-chart type="line" [data]="chart" [options]="chartOptions" height="260px" />
+        }
+      </div>
+    </div>
+
+    <p class="source">
+      Fuente: <a href="https://mindicador.cl" target="_blank" rel="noopener">mindicador.cl</a>
+      · Fecha de los datos: {{ resumen.fecha }}
+    </p>
+  }
+</div>

@@ -1,53 +1,71 @@
-/* Layout general del dashboard (vive en app.component.html) */
-.dashboard {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-}
-
-.dashboard-header {
+/* ===== Topbar ===== */
+.topbar {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  padding: 0 2rem;
+  height: 60px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.dashboard-header h1 {
-  font-size: 1.8rem;
+/* ===== Logo / Marca ===== */
+.topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.topbar__logo {
+  font-family: var(--font-mono);
   font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--color-text);              /* MP en blanco */
 }
 
-.dashboard-header p {
+.topbar__bracket {
+  color: var(--color-accent);            /* < /> en ámbar */
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+/* Brillo sutil al pasar el mouse */
+.topbar__brand:hover .topbar__bracket {
+  color: #fde68a;
+  text-shadow: 0 0 12px rgba(251, 191, 36, 0.45);
+}
+
+.topbar__name {
   color: var(--color-text-secondary);
-  margin-top: 0.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
-.updated {
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-}
-
-/* Grid de KPIs */
-.kpi-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+/* ===== Navegación ===== */
+.topbar__links {
+  display: flex;
   gap: 1.5rem;
-  margin-bottom: 2rem;
 }
 
-/* Título de la sección de tabla */
-.table-section h2 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+.topbar__links a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease;
 }
 
-@media (max-width: 1024px) {
-  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+.topbar__links a:hover {
+  color: var(--color-text);
 }
 
-@media (max-width: 640px) {
-  .kpi-grid { grid-template-columns: 1fr; }
+/* Link activo (mayor especificidad, sin !important) */
+.topbar__links a.topbar__link--active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
 }

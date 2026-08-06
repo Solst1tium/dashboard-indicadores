@@ -16,6 +16,7 @@
   --color-success: #22c55e;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
+    --color-accent: #fbbf24;   /* ← ámbar del logo */
 
   /* Forma y efectos */
   --radius-md: 12px;
@@ -23,6 +24,7 @@
 
   /* Tipografía */
   --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 }
 
 /* ===== Reset mínimo ===== */

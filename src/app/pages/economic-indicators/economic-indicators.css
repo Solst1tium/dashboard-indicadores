@@ -1,0 +1,41 @@
+.economic {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.economic-header {
+  margin-bottom: 2rem;
+}
+
+.economic-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.economic-header p {
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+}
+
+/* Estados de carga y error (los usaremos con HttpClient) */
+.loading,
+.error {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+}
+
+.loading {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.error {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger);
+}
