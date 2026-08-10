@@ -5,20 +5,53 @@
 }
 
 .economic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
   margin-bottom: 2rem;
 }
 
-.economic-header h1 {
-  font-size: 1.8rem;
-  font-weight: 700;
+.economic-header h1 { font-size: 1.8rem; font-weight: 700; }
+.economic-header p  { color: var(--color-text-secondary); margin-top: 0.25rem; }
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.economic-header p {
-  color: var(--color-text-secondary);
-  margin-top: 0.25rem;
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-/* Estados de carga y error (los usaremos con HttpClient) */
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+.panel h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.source {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.source a {
+  color: var(--color-primary);
+}
+
 .loading,
 .error {
   display: flex;
@@ -38,4 +71,13 @@
   background: rgba(239, 68, 68, 0.1);
   color: var(--color-danger);
   border: 1px solid var(--color-danger);
+}
+
+@media (max-width: 1024px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .charts-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .kpi-grid { grid-template-columns: 1fr; }
 }
